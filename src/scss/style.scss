@@ -1,0 +1,174 @@
+@use "variables" as v;
+
+@mixin for-size($size) {
+  @if $size == tablet {
+    @media screen and (min-width: v.$tablet) {
+      @content;
+    }
+  }
+  @if $size == desktop {
+    @media screen and (min-width: v.$destop) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($dir, $just, $align) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $just;
+  align-items: $align;
+}
+
+@mixin listStyle($pad, $font) {
+  width: 100%;
+  list-style: none;
+  padding: $pad;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: $font;
+  font-family: sans-serif;
+  background-color: rgb(96, 159, 176);
+  border-radius: 25px;
+  border: 1px solid rgb(76, 128, 142);
+}
+
+@mixin closeBtnStyle($font) {
+  cursor: pointer;
+  float: right;
+  font-size: $font;
+  padding-right: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  body {
+    background-color: rgb(72, 132, 148);
+    color: white;
+    @include flex(column, center, center);
+    max-width: 360px;
+    min-height: 100vh;
+
+    @include for-size(tablet) {
+      max-width: 1280px;
+    }
+
+    @include for-size(desktop) {
+      max-width: 1600px;
+    }
+
+    #container {
+      /* @include flex(column, center, center); */
+      max-width: 340px;
+      width: 100%;
+
+      @include for-size(tablet) {
+        max-width: 75%;
+      }
+
+      @include for-size(desktop) {
+        max-width: 90%;
+      }
+
+      #header {
+        @include flex(column, center, center);
+        width: 100%;
+        padding: 10px;
+
+        h1 {
+          font-size: 20px;
+          padding: 20px;
+          font-family: sans-serif;
+
+          @include for-size(tablet) {
+            font-size: 36px;
+            padding: 40px;
+          }
+        }
+        .addForm {
+          width: 95%;
+          #userInput {
+            border: none;
+            width: 75%;
+            height: 30px;
+            font-size: 12px;
+            float: left;
+            border-radius: 4px 0 0 4px;
+
+            @include for-size(tablet) {
+              height: 45px;
+              font-size: 16px;
+            }
+          }
+
+          #addBtn {
+            cursor: pointer;
+            border: none;
+            width: 25%;
+            height: 30px;
+            float: right;
+            border: none;
+            background-color: rgb(96, 159, 176);
+            color: white;
+            border-radius: 0 4px 4px 0;
+
+            @include for-size(tablet) {
+              height: 45px;
+              font-size: 16px;
+            }
+          }
+        }
+
+        #sort {
+          padding: 15px;
+          font-family: sans-serif;
+          font-size: 14px;
+
+          @include for-size(tablet) {
+            padding: 20px;
+            font-size: 18px;
+            float: right;
+            width: 100%;
+
+            @include flex(row, flex-end, center);
+          }
+        }
+      }
+
+      #toDoContainer,
+      #doneContainer {
+        width: 100%;
+
+        ul {
+          @include flex(column, center, center);
+
+          li {
+            @include listStyle(20px, 14px);
+
+            @include for-size(tablet) {
+              @include listStyle(25px, 18px);
+            }
+
+            &:hover {
+              cursor: pointer;
+              width: 102%;
+              height: 102%;
+              color: rgb(53, 94, 105);
+            }
+
+            .close {
+              @include closeBtnStyle(16px);
+
+              @include for-size(tablet) {
+                @include closeBtnStyle(22px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo or not todo?</title>
+  </head>
+  <body>
+    <div id="container">
+    <div id="header">
+      <h1>To-do List</h1>
+      <form class="addForm">
+        <input type="text" name="userInput" id="userInput" placeholder="  Lägg till en punkt..." />
+        <button type="submit" id="addBtn" >Lägg till</button>
+      </form>
+
+      <div id="sort">
+        <label for="filter">Sortera</label>
+        <select name="filter" id="filter">
+          <option value=""></option>
+          <option value="abc">A-Ö</option>
+          <option value="cba">Ö-A</option>
+        </select>
+      </div>
+    </div>
+    <div id="toDoContainer">
+    </div>
+    <div id="doneContainer"></div>
+
+    </div>
+
+    <script type="module" src="src/js/main.js"></script>
+  </body>
+</html>
